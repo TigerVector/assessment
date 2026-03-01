@@ -93,30 +93,37 @@
       <div class="tv-line"></div>
     </div>
     <div class="card">
-      <div style="text-align:center;margin-bottom:.75rem">
-        <span style="font-size:11px;font-weight:700;letter-spacing:3px;color:#F0C040" data-k="intro_tag">AVIATION DIAGNOSTIC</span>
+      <!-- Expert credential bar -->
+      <div style="text-align:center;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #1B3A6B">
+        <p style="font-size:10px;font-weight:700;letter-spacing:3px;color:#F0C040;margin-bottom:2px" data-k="intro_cred1">45+ YEARS · FIGHTER PILOT · AVIATION SAFETY EXPERT</p>
+        <p style="font-size:11px;color:#475569;letter-spacing:1px" data-k="intro_cred2">Daniel Meléndez · TIGER VECTOR</p>
       </div>
-      <h1 style="font-size:34px;font-weight:800;line-height:1.1;text-align:center">
-        <span data-k="intro_h1a">How Safe Is Your</span><br>
-        <span style="color:#F0C040" data-k="intro_h1b">Aviation Culture?</span>
+
+      <!-- Title -->
+      <h1 style="font-size:26px;font-weight:800;line-height:1.2;text-align:center;margin-bottom:.75rem">
+        <span data-k="intro_h1a">Safety Culture</span><br>
+        <span style="color:#F0C040" data-k="intro_h1b">Maturity Assessment</span>
       </h1>
-      <p style="font-size:14px;color:#94A3B8;text-align:center;line-height:1.6;margin-top:.75rem" data-k="intro_sub">
-        8 questions. 3 minutes. Discover exactly where your organization stands — and what to do next.
+
+      <!-- Description -->
+      <p style="font-size:15px;color:#CBD5E1;text-align:center;line-height:1.7;margin-bottom:1.5rem" data-k="intro_sub">
+        Evaluate your organization's safety culture across 8 critical dimensions and understand your strategic identity with this expert-developed diagnostic tool.
       </p>
+
+      <!-- Stats -->
       <div class="stats-row">
-        <div class="stat-card"><div class="stat-n">8</div><div class="stat-l" data-k="stat_q">QUESTIONS</div></div>
-        <div class="stat-card"><div class="stat-n">3'</div><div class="stat-l" data-k="stat_t">MINUTES</div></div>
-        <div class="stat-card"><div class="stat-n">5</div><div class="stat-l" data-k="stat_l">LEVELS</div></div>
+        <div class="stat-card"><div class="stat-n">11</div><div class="stat-l" data-k="stat_q">QUESTIONS</div></div>
+        <div class="stat-card"><div class="stat-n">5'</div><div class="stat-l" data-k="stat_t">MINUTES</div></div>
+        <div class="stat-card"><div class="stat-n">2</div><div class="stat-l" data-k="stat_l">PROFILES</div></div>
       </div>
+
       <hr class="hr-gold">
       <p style="font-size:12px;color:#475569;text-align:center;margin-bottom:1.25rem" data-k="intro_based">
-        Based on the SCMA framework — 8 dimensions of aviation safety culture
+        Based on the SCMA framework — 8 dimensions + Strategic Identity module
       </p>
       <button class="btn-gold" onclick="goTo('s-qualifier')" data-k="btn_begin">BEGIN ASSESSMENT →</button>
+      <p class="privacy" style="margin-top:12px" data-k="privacy">🔒 Your information is confidential and will never be shared.</p>
     </div>
-    <p style="font-size:11px;color:#334155;text-align:center;margin-top:1rem" data-k="intro_by">
-      By Daniel Meléndez · Fighter Pilot · TIGER VECTOR
-    </p>
   </div>
 </div>
 
@@ -362,11 +369,13 @@ const SHEETS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // replace after setup
 const T = {
   en: {
     tv_sub:'Safety Culture Maturity Advisor',
-    intro_tag:'AVIATION DIAGNOSTIC',intro_h1a:'How Safe Is Your',intro_h1b:'Aviation Culture?',
-    intro_sub:'8 questions. 3 minutes. Discover exactly where your organization stands — and what to do next.',
-    stat_q:'QUESTIONS',stat_t:'MINUTES',stat_l:'LEVELS',
-    intro_based:'Based on the SCMA framework — 8 dimensions of aviation safety culture',
-    btn_begin:'BEGIN ASSESSMENT →',intro_by:'By Daniel Meléndez · Fighter Pilot · TIGER VECTOR',
+    intro_cred1:'45+ YEARS · FIGHTER PILOT · AVIATION SAFETY EXPERT',
+    intro_cred2:'Daniel Meléndez · TIGER VECTOR',
+    intro_h1a:'Safety Culture',intro_h1b:'Maturity Assessment',
+    intro_sub:"Evaluate your organization's safety culture across 8 critical dimensions and understand your strategic identity with this expert-developed diagnostic tool.",
+    stat_q:'QUESTIONS',stat_t:'MINUTES',stat_l:'PROFILES',
+    intro_based:'Based on the SCMA framework — 8 dimensions + Strategic Identity module',
+    btn_begin:'BEGIN ASSESSMENT →',
     q_title:'About Your Organization',q_sub:'This helps us tailor your results to your aviation context.',
     lbl_job:'JOB TITLE',lbl_sector:'AVIATION SECTOR',lbl_size:'COMPANY SIZE',lbl_country:'COUNTRY',
     opt_sel:'Select your role...',opt_ceo:'CEO / President',opt_safety:'Safety Director / Chief Safety Officer',
@@ -397,11 +406,13 @@ const T = {
   },
   es: {
     tv_sub:'Safety Culture Maturity Advisor',
-    intro_tag:'DIAGNÓSTICO DE AVIACIÓN',intro_h1a:'¿Qué tan madura es su',intro_h1b:'Cultura de Seguridad?',
-    intro_sub:'8 preguntas. 3 minutos. Descubra exactamente dónde está su organización — y qué hacer después.',
-    stat_q:'PREGUNTAS',stat_t:'MINUTOS',stat_l:'NIVELES',
-    intro_based:'Basado en el modelo SCMA — 8 dimensiones de cultura de seguridad aérea',
-    btn_begin:'COMENZAR EVALUACIÓN →',intro_by:'Por Daniel Meléndez · Piloto de Caza · TIGER VECTOR',
+    intro_cred1:'45+ AÑOS · PILOTO DE CAZA · EXPERTO EN SEGURIDAD AÉREA',
+    intro_cred2:'Daniel Meléndez · TIGER VECTOR',
+    intro_h1a:'Evaluación de Madurez en',intro_h1b:'Cultura de Seguridad',
+    intro_sub:'Evalúe la cultura de seguridad de su organización en 8 dimensiones críticas y comprenda su identidad estratégica con esta herramienta diagnóstica desarrollada por expertos.',
+    stat_q:'PREGUNTAS',stat_t:'MINUTOS',stat_l:'PERFILES',
+    intro_based:'Basado en el modelo SCMA — 8 dimensiones + módulo de Identidad Estratégica',
+    btn_begin:'COMENZAR EVALUACIÓN →',
     q_title:'Sobre Su Organización',q_sub:'Esto nos permite adaptar sus resultados al contexto de su aviación.',
     lbl_job:'CARGO',lbl_sector:'SECTOR DE AVIACIÓN',lbl_size:'TAMAÑO DE LA EMPRESA',lbl_country:'PAÍS',
     opt_sel:'Seleccione su cargo...',opt_ceo:'CEO / Presidente',opt_safety:'Director de Seguridad Aérea / CSO',
