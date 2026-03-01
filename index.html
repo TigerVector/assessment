@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safety Culture Maturity Assessment — TIGER VECTOR</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#070D1B;min-height:100vh;color:#fff}
+    .screen{display:none;min-height:100vh;padding:2rem 1rem;animation:fadeIn .4s ease}
+    .screen.active{display:flex;flex-direction:column;align-items:center;justify-content:center}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .container{width:100%;max-width:620px}
+    .tv-header{text-align:center;margin-bottom:1.5rem}
+    .tv-wordmark{font-size:13px;font-weight:700;letter-spacing:4px;color:#F0C040;margin-bottom:3px}
+    .tv-subtitle{font-size:9px;letter-spacing:2px;color:#475569;text-transform:uppercase}
+    .tv-line{width:50px;height:2px;background:#F0C040;margin:10px auto}
+    .card{background:#0A1628;border:1px solid #1B3A6B;border-radius:14px;padding:2rem}
+    .btn-gold{background:#F0C040;color:#070D1B;border:none;padding:15px 32px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;width:100%;letter-spacing:.5px;transition:background .2s}
+    .btn-gold:hover{background:#FFD060}
+    .btn-ghost{background:transparent;color:#64748B;border:1px solid #1B3A6B;padding:12px 20px;border-radius:8px;font-size:14px;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .btn-ghost:hover{border-color:#F0C040;color:#F0C040}
+    .form-group{margin-bottom:1rem}
+    .form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;color:#64748B;margin-bottom:6px;text-transform:uppercase}
+    .form-group select,.form-group input{width:100%;background:#0F1E35;border:1px solid #1B3A6B;border-radius:8px;padding:13px 16px;color:#fff;font-size:15px;outline:none;transition:border-color .2s;-webkit-appearance:none}
+    .form-group select:focus,.form-group input:focus{border-color:#F0C040}
+    .form-group.error select,.form-group.error input{border-color:#E63946}
+    .form-group select option{background:#0F1E35}
+    .prog-wrap{margin-bottom:1.25rem}
+    .prog-info{display:flex;justify-content:space-between;font-size:11px;color:#475569;margin-bottom:7px}
+    .prog-bar{height:3px;background:#1B3A6B;border-radius:2px;overflow:hidden}
+    .prog-fill{height:100%;background:#F0C040;border-radius:2px;transition:width .4s ease}
+    .likert{display:flex;gap:8px;margin:1.5rem 0 .5rem}
+    .lk-opt{flex:1;text-align:center;cursor:pointer}
+    .lk-btn{width:100%;aspect-ratio:1;border-radius:8px;border:2px solid #1B3A6B;background:#0F1E35;color:#64748B;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+    .lk-btn:hover{border-color:#F0C040;color:#F0C040}
+    .lk-btn.sel{background:#F0C040;border-color:#F0C040;color:#070D1B}
+    .lk-lbl{font-size:9px;color:#475569;margin-top:5px;line-height:1.3}
+    .dim-badge{display:inline-flex;align-items:center;gap:6px;background:#0F1E35;border:1px solid #1B3A6B;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:1rem}
+    .stats-row{display:flex;gap:10px;margin:1.25rem 0}
+    .stat-card{flex:1;background:#0F1E35;border:1px solid #1B3A6B;border-radius:8px;padding:14px 6px;text-align:center}
+    .stat-n{font-size:26px;font-weight:700;color:#F0C040;line-height:1}
+    .stat-l{font-size:9px;color:#475569;letter-spacing:1px;margin-top:3px}
+    .spinner{width:52px;height:52px;border:3px solid #1B3A6B;border-top-color:#F0C040;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1.25rem}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .load-steps{list-style:none}
+    .load-step{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:13px;color:#475569;transition:color .3s}
+    .load-step.done{color:#059669}
+    .load-step.active{color:#F0C040}
+    .step-dot{width:7px;height:7px;border-radius:50%;background:#1B3A6B;flex-shrink:0}
+    .load-step.done .step-dot{background:#059669}
+    .load-step.active .step-dot{background:#F0C040;animation:pulse .8s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    .score-big{font-size:76px;font-weight:800;color:#F0C040;line-height:1;text-align:center}
+    .score-of{font-size:14px;color:#475569;text-align:center;margin-top:2px}
+    .level-badge{display:inline-block;padding:6px 20px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:2px}
+    .dim-bar-row{margin-bottom:10px}
+    .dim-bar-hdr{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px}
+    .dim-bar-name{font-weight:600;letter-spacing:.3px}
+    .dim-bar-pct{color:#F0C040;font-weight:700}
+    .dim-bar-bg{height:5px;background:#1B3A6B;border-radius:3px;overflow:hidden}
+    .dim-bar-fill{height:100%;border-radius:3px;transition:width 1.2s ease}
+    .cta-box{border-radius:12px;padding:1.5rem;text-align:center;margin-top:1rem}
+    .hr-gold{border:none;height:1px;background:linear-gradient(90deg,transparent,#F0C040,transparent);margin:1.25rem 0}
+    .lang-toggle{position:fixed;top:14px;right:14px;z-index:200;display:flex;gap:3px;background:#0A1628;border:1px solid #1B3A6B;border-radius:20px;padding:3px}
+    .lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;background:transparent;color:#475569}
+    .lang-btn.active{background:#F0C040;color:#070D1B}
+    .nav-btns{display:flex;gap:10px;margin-top:1.25rem}
+    .nav-btns .btn-gold{flex:1}
+    .privacy{font-size:11px;color:#475569;text-align:center;margin-top:10px}
+    @media(max-width:480px){.score-big{font-size:58px}.card{padding:1.5rem 1.25rem}.lk-btn{font-size:14px}}
+    .id-opt{background:#0F1E35;border:2px solid #1B3A6B;border-radius:10px;padding:14px 16px;cursor:pointer;margin-bottom:10px;transition:all .2s;text-align:left;width:100%;display:block}
+    .id-opt:hover{border-color:#F0C040;background:#F0C04010}
+    .id-opt.sel{border-color:#F0C040;background:#F0C04020}
+    .id-opt-ltr{font-size:10px;font-weight:700;color:#F0C040;letter-spacing:2px;margin-bottom:5px}
+    .id-opt-txt{font-size:13px;color:#94A3B8;line-height:1.6}
+  </style>
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+  <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+</div>
+
+<!-- ══════════════════ SCREEN 1 — INTRO ══════════════════ -->
+<div class="screen active" id="s-intro">
+  <div class="container">
+    <div class="tv-header">
+      <div class="tv-wordmark">TIGER VECTOR</div>
+      <div class="tv-subtitle" data-k="tv_sub">Safety Culture Maturity Advisor</div>
+      <div class="tv-line"></div>
+    </div>
+    <div class="card">
+      <div style="text-align:center;margin-bottom:.75rem">
+        <span style="font-size:11px;font-weight:700;letter-spacing:3px;color:#F0C040" data-k="intro_tag">AVIATION DIAGNOSTIC</span>
+      </div>
+      <h1 style="font-size:34px;font-weight:800;line-height:1.1;text-align:center">
+        <span data-k="intro_h1a">How Safe Is Your</span><br>
+        <span style="color:#F0C040" data-k="intro_h1b">Aviation Culture?</span>
+      </h1>
+      <p style="font-size:14px;color:#94A3B8;text-align:center;line-height:1.6;margin-top:.75rem" data-k="intro_sub">
+        8 questions. 3 minutes. Discover exactly where your organization stands — and what to do next.
+      </p>
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-n">8</div><div class="stat-l" data-k="stat_q">QUESTIONS</div></div>
+        <div class="stat-card"><div class="stat-n">3'</div><div class="stat-l" data-k="stat_t">MINUTES</div></div>
+        <div class="stat-card"><div class="stat-n">5</div><div class="stat-l" data-k="stat_l">LEVELS</div></div>
+      </div>
+      <hr class="hr-gold">
+      <p style="font-size:12px;color:#475569;text-align:center;margin-bottom:1.25rem" data-k="intro_based">
+        Based on the SCMA framework — 8 dimensions of aviation safety culture
+      </p>
+      <button class="btn-gold" onclick="goTo('s-qualifier')" data-k="btn_begin">BEGIN ASSESSMENT →</button>
+    </div>
+    <p style="font-size:11px;color:#334155;text-align:center;margin-top:1rem" data-k="intro_by">
+      By Daniel Meléndez · Fighter Pilot · TIGER VECTOR
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════ SCREEN 2 — QUALIFIER ══════════════════ -->
+<div class="screen" id="s-qualifier">
+  <div class="container">
+    <div class="tv-header">
+      <div class="tv-wordmark">TIGER VECTOR</div>
+      <div class="tv-line"></div>
+    </div>
+    <div class="card">
+      <h2 style="font-size:21px;font-weight:700;margin-bottom:4px" data-k="q_title">About Your Organization</h2>
+      <p style="font-size:13px;color:#64748B;margin-bottom:1.5rem" data-k="q_sub">This helps us tailor your results to your aviation context.</p>
+
+      <div class="form-group" id="fg-job">
+        <label data-k="lbl_job">JOB TITLE</label>
+        <select id="sel-job">
+          <option value="" data-k="opt_sel">Select your role...</option>
+          <option value="CEO / President" data-k="opt_ceo">CEO / President</option>
+          <option value="Safety Director / CSO" data-k="opt_safety">Safety Director / Chief Safety Officer</option>
+          <option value="Operations Director" data-k="opt_ops">Operations Director</option>
+          <option value="Quality Director" data-k="opt_qual">Quality Director</option>
+          <option value="Other Executive" data-k="opt_exec">Other Executive</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="fg-sector">
+        <label data-k="lbl_sector">AVIATION SECTOR</label>
+        <select id="sel-sector">
+          <option value="" data-k="opt_sel2">Select your sector...</option>
+          <option value="Agricultural Aviation">Agricultural Aviation</option>
+          <option value="Regional / Non-Regular">Regional / Non-Regular</option>
+          <option value="Scheduled Commercial">Scheduled Commercial</option>
+          <option value="Cargo">Cargo</option>
+          <option value="MRO / Maintenance">MRO / Maintenance</option>
+          <option value="Flight School">Flight School</option>
+          <option value="ATC / Air Navigation">ATC / Air Navigation</option>
+          <option value="Military Aviation">Military Aviation</option>
+          <option value="Dispatch">Dispatch</option>
+          <option value="Drones / UAS">Drones / UAS</option>
+          <option value="eVTOL">eVTOL</option>
+          <option value="Regulator / Authority">Regulator / Authority</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="fg-size">
+        <label data-k="lbl_size">COMPANY SIZE</label>
+        <select id="sel-size">
+          <option value="" data-k="opt_sel3">Select size...</option>
+          <option value="50–100">50–100 employees</option>
+          <option value="101–250">101–250 employees</option>
+          <option value="251–500">251–500 employees</option>
+          <option value="501–1,000">501–1,000 employees</option>
+          <option value="1,001–3,000">1,001–3,000 employees</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="fg-country">
+        <label data-k="lbl_country">COUNTRY</label>
+        <select id="sel-country">
+          <option value="" data-k="opt_sel4">Select country...</option>
+        </select>
+      </div>
+
+      <button class="btn-gold" onclick="submitQualifier()" data-k="btn_cont">CONTINUE →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ SCREEN 3 — QUESTIONS ══════════════════ -->
+<div class="screen" id="s-questions">
+  <div class="container">
+    <div class="prog-wrap">
+      <div class="prog-info">
+        <span id="q-counter">Question 1 of 8</span>
+        <span id="q-dim-lbl" style="font-weight:600"></span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="q-prog" style="width:12.5%"></div></div>
+    </div>
+    <div class="card">
+      <div class="dim-badge" id="q-badge">D1 — LEADERSHIP</div>
+      <h2 style="font-size:20px;font-weight:700;line-height:1.5;color:#fff" id="q-text"></h2>
+      <div class="likert" id="q-likert"></div>
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#475569;margin-top:-2px;margin-bottom:1rem">
+        <span data-k="lbl_dis">Strongly Disagree</span>
+        <span data-k="lbl_agr">Strongly Agree</span>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-ghost" id="btn-back" onclick="prevQ()" data-k="btn_back">← Back</button>
+        <button class="btn-gold" onclick="nextQ()" data-k="btn_next">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ SCREEN 3B — STRATEGIC IDENTITY ══════════════════ -->
+<div class="screen" id="s-identity">
+  <div class="container">
+    <div class="prog-wrap">
+      <div class="prog-info">
+        <span id="iq-counter">Question 1 of 3</span>
+        <span style="font-size:11px;font-weight:700;color:#F0C040;letter-spacing:1px" data-k="id_mod">STRATEGIC IDENTITY</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="iq-prog" style="width:33%"></div></div>
+    </div>
+    <div class="card">
+      <div class="dim-badge" style="color:#F0C040;border-color:#F0C04055" data-k="id_badge">STRATEGIC IDENTITY</div>
+      <p style="font-size:12px;color:#64748B;margin-bottom:1rem;line-height:1.5" data-k="id_intro_txt">Beyond systems — what does your organization really do under pressure?</p>
+      <h2 style="font-size:17px;font-weight:700;line-height:1.55;color:#fff;margin-bottom:1.25rem" id="iq-text"></h2>
+      <div id="iq-options"></div>
+      <div class="nav-btns" style="margin-top:1.25rem">
+        <button class="btn-ghost" id="iq-btn-back" onclick="prevIQ()" data-k="btn_back">← Back</button>
+        <button class="btn-gold" id="iq-btn-next" onclick="nextIQ()" data-k="btn_next">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ SCREEN 4 — LEAD CAPTURE ══════════════════ -->
+<div class="screen" id="s-lead">
+  <div class="container">
+    <div class="tv-header">
+      <div class="tv-wordmark">TIGER VECTOR</div>
+      <div class="tv-line"></div>
+    </div>
+    <div class="card">
+      <div style="text-align:center;margin-bottom:.75rem;font-size:28px">📊</div>
+      <h2 style="font-size:22px;font-weight:700;text-align:center;margin-bottom:5px" data-k="lead_title">Your Results Are Ready</h2>
+      <p style="font-size:13px;color:#64748B;text-align:center;margin-bottom:1.25rem" data-k="lead_sub">Enter your details to view your Safety Culture Maturity Level.</p>
+      <hr class="hr-gold">
+      <div class="form-group" id="fg-name">
+        <label data-k="lbl_name">FULL NAME *</label>
+        <input type="text" id="inp-name" placeholder="Daniel Meléndez">
+      </div>
+      <div class="form-group" id="fg-email">
+        <label data-k="lbl_email">WORK EMAIL *</label>
+        <input type="email" id="inp-email" placeholder="daniel@company.com">
+      </div>
+      <div class="form-group" id="fg-company">
+        <label data-k="lbl_company">COMPANY / ORGANIZATION *</label>
+        <input type="text" id="inp-company" placeholder="TIGER VECTOR">
+      </div>
+      <div class="form-group">
+        <label data-k="lbl_phone">PHONE (OPTIONAL)</label>
+        <input type="tel" id="inp-phone" placeholder="+57 300 000 0000">
+      </div>
+      <button class="btn-gold" onclick="submitLead()" data-k="btn_view">VIEW MY RESULTS →</button>
+      <p class="privacy" data-k="privacy">🔒 Your information is confidential and will never be shared.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ SCREEN 5 — LOADING ══════════════════ -->
+<div class="screen" id="s-loading">
+  <div class="container" style="text-align:center">
+    <div class="tv-header">
+      <div class="tv-wordmark">TIGER VECTOR</div>
+      <div class="tv-line"></div>
+    </div>
+    <div class="spinner"></div>
+    <h3 style="font-size:18px;font-weight:700;margin-bottom:4px" data-k="load_h">Analyzing your responses...</h3>
+    <p style="font-size:13px;color:#64748B;margin-bottom:1.25rem" data-k="load_sub">Calculating your Safety Culture Maturity Level</p>
+    <div class="card" style="text-align:left">
+      <ul class="load-steps" id="load-steps">
+        <li class="load-step" id="ls0"><span class="step-dot"></span><span data-k="ls_0">Evaluating Leadership Commitment</span></li>
+        <li class="load-step" id="ls1"><span class="step-dot"></span><span data-k="ls_1">Analyzing Just Culture Indicators</span></li>
+        <li class="load-step" id="ls2"><span class="step-dot"></span><span data-k="ls_2">Assessing Reporting Culture</span></li>
+        <li class="load-step" id="ls3"><span class="step-dot"></span><span data-k="ls_3">Reviewing Learning Practices</span></li>
+        <li class="load-step" id="ls4"><span class="step-dot"></span><span data-k="ls_4">Measuring Communication Flows</span></li>
+        <li class="load-step" id="ls5"><span class="step-dot"></span><span data-k="ls_5">Reviewing Change Management</span></li>
+        <li class="load-step" id="ls6"><span class="step-dot"></span><span data-k="ls_6">Assessing Team Participation</span></li>
+        <li class="load-step" id="ls7"><span class="step-dot"></span><span data-k="ls_7">Generating Personalized Recommendations</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ SCREEN 6 — RESULTS ══════════════════ -->
+<div class="screen" id="s-results">
+  <div class="container" style="padding-bottom:3rem">
+    <div class="tv-header">
+      <div class="tv-wordmark">TIGER VECTOR</div>
+      <div class="tv-subtitle" data-k="res_sub">Safety Culture Maturity Assessment</div>
+      <div class="tv-line"></div>
+    </div>
+
+    <!-- Score card -->
+    <div class="card" style="text-align:center;margin-bottom:1rem">
+      <p style="font-size:10px;letter-spacing:3px;color:#64748B;margin-bottom:8px" data-k="res_your">YOUR MATURITY SCORE</p>
+      <div class="score-big" id="res-score">—</div>
+      <div class="score-of" data-k="res_of">out of 100</div>
+
+      <!-- Gauge SVG -->
+      <div style="width:220px;margin:1rem auto 0">
+        <svg viewBox="0 0 200 115" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 102 A82 82 0 0 1 54 26" stroke="#E63946" stroke-width="11" fill="none" stroke-linecap="round" opacity=".25"/>
+          <path d="M54 26 A82 82 0 0 1 100 18" stroke="#D97706" stroke-width="11" fill="none" stroke-linecap="round" opacity=".25"/>
+          <path d="M100 18 A82 82 0 0 1 146 26" stroke="#EAB308" stroke-width="11" fill="none" stroke-linecap="round" opacity=".25"/>
+          <path d="M146 26 A82 82 0 0 1 182 102" stroke="#059669" stroke-width="11" fill="none" stroke-linecap="round" opacity=".25"/>
+          <line id="needle" x1="100" y1="102" x2="100" y2="26" stroke="#F0C040" stroke-width="3" stroke-linecap="round" transform="rotate(-90,100,102)" style="transition:transform 1.2s cubic-bezier(.4,0,.2,1)"/>
+          <circle cx="100" cy="102" r="5" fill="#F0C040"/>
+          <text x="10" y="112" font-size="7" fill="#E63946" font-family="sans-serif">N1</text>
+          <text x="46" y="20" font-size="7" fill="#D97706" font-family="sans-serif">N2</text>
+          <text x="95" y="12" font-size="7" fill="#EAB308" font-family="sans-serif">N3</text>
+          <text x="142" y="20" font-size="7" fill="#059669" font-family="sans-serif">N4</text>
+          <text x="176" y="112" font-size="7" fill="#2563EB" font-family="sans-serif">N5</text>
+        </svg>
+      </div>
+
+      <span class="level-badge" id="res-badge" style="margin-top:.5rem">—</span>
+      <p style="font-size:13px;color:#94A3B8;margin-top:12px;line-height:1.7;text-align:left" id="res-desc"></p>
+    </div>
+
+    <!-- Dimension bars -->
+    <div class="card" style="margin-bottom:1rem">
+      <p style="font-size:10px;letter-spacing:2px;color:#F0C040;font-weight:700;margin-bottom:1.1rem" data-k="res_dims">8 DIMENSIONS — YOUR PROFILE</p>
+      <div id="dim-bars"></div>
+    </div>
+
+    <!-- CTA -->
+    <div id="res-cta"></div>
+
+    <!-- Footer -->
+    <div style="text-align:center;margin-top:1.5rem">
+      <p style="font-size:13px;font-weight:700;color:#F0C040">Daniel Meléndez</p>
+      <p style="font-size:11px;color:#475569" data-k="auth_cred">Fighter Pilot · Founder, TIGER VECTOR · Aviation Safety Expert</p>
+      <p style="font-size:10px;color:#334155;margin-top:4px">© 2026 TIGER VECTOR · support@tigervector.vip</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════
+const CALENDLY = 'https://calendly.com/wakeupwarriorleader/tigervector';
+const SHEETS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // replace after setup
+
+// ══════════════════════════════════════════
+// TRANSLATIONS
+// ══════════════════════════════════════════
+const T = {
+  en: {
+    tv_sub:'Safety Culture Maturity Advisor',
+    intro_tag:'AVIATION DIAGNOSTIC',intro_h1a:'How Safe Is Your',intro_h1b:'Aviation Culture?',
+    intro_sub:'8 questions. 3 minutes. Discover exactly where your organization stands — and what to do next.',
+    stat_q:'QUESTIONS',stat_t:'MINUTES',stat_l:'LEVELS',
+    intro_based:'Based on the SCMA framework — 8 dimensions of aviation safety culture',
+    btn_begin:'BEGIN ASSESSMENT →',intro_by:'By Daniel Meléndez · Fighter Pilot · TIGER VECTOR',
+    q_title:'About Your Organization',q_sub:'This helps us tailor your results to your aviation context.',
+    lbl_job:'JOB TITLE',lbl_sector:'AVIATION SECTOR',lbl_size:'COMPANY SIZE',lbl_country:'COUNTRY',
+    opt_sel:'Select your role...',opt_ceo:'CEO / President',opt_safety:'Safety Director / Chief Safety Officer',
+    opt_ops:'Operations Director',opt_qual:'Quality Director',opt_exec:'Other Executive',
+    opt_sel2:'Select your sector...',opt_sel3:'Select size...',opt_sel4:'Select country...',
+    btn_cont:'CONTINUE →',
+    lbl_dis:'Strongly Disagree',lbl_agr:'Strongly Agree',
+    btn_back:'← Back',btn_next:'Next →',
+    lead_title:'Your Results Are Ready',lead_sub:'Enter your details to view your Safety Culture Maturity Level.',
+    lbl_name:'FULL NAME *',lbl_email:'WORK EMAIL *',lbl_company:'COMPANY / ORGANIZATION *',lbl_phone:'PHONE (OPTIONAL)',
+    btn_view:'VIEW MY RESULTS →',privacy:'🔒 Your information is confidential and will never be shared.',
+    load_h:'Analyzing your responses...',load_sub:'Calculating your Safety Culture Maturity Level',
+    ls_0:'Evaluating Leadership Commitment',ls_1:'Analyzing Just Culture Indicators',
+    ls_2:'Assessing Reporting Culture',ls_3:'Reviewing Learning Practices',
+    ls_4:'Measuring Communication Flows',ls_5:'Reviewing Change Management',
+    ls_6:'Assessing Team Participation',ls_7:'Generating Personalized Recommendations',
+    res_sub:'Safety Culture Maturity Assessment',res_your:'YOUR MATURITY SCORE',res_of:'out of 100',
+    res_dims:'8 DIMENSIONS — YOUR PROFILE',auth_cred:'Fighter Pilot · Founder, TIGER VECTOR · Aviation Safety Expert',
+    err_req:'Please complete all required fields.',err_email:'Please enter a valid work email.',
+    cta_urgency:'YOUR SITUATION:',cta_book:'BOOK FREE 30-MIN SESSION →',
+    cta_note:'No commitment. Real data. You leave knowing exactly where your organization stands and what to fix first.',
+    id_mod:'STRATEGIC IDENTITY',id_badge:'STRATEGIC IDENTITY',
+    id_intro_txt:'Beyond systems — what does your organization really do under pressure?',
+    id_type_lbl:'YOUR STRATEGIC IDENTITY',
+    id_type_sc_name:'STRATEGICALLY CONFIGURED',
+    id_type_ba_name:'BALANCED BUT EXPOSED',
+    id_type_cd_name:'COMPLIANCE-DRIVEN'
+  },
+  es: {
+    tv_sub:'Safety Culture Maturity Advisor',
+    intro_tag:'DIAGNÓSTICO DE AVIACIÓN',intro_h1a:'¿Qué tan madura es su',intro_h1b:'Cultura de Seguridad?',
+    intro_sub:'8 preguntas. 3 minutos. Descubra exactamente dónde está su organización — y qué hacer después.',
+    stat_q:'PREGUNTAS',stat_t:'MINUTOS',stat_l:'NIVELES',
+    intro_based:'Basado en el modelo SCMA — 8 dimensiones de cultura de seguridad aérea',
+    btn_begin:'COMENZAR EVALUACIÓN →',intro_by:'Por Daniel Meléndez · Piloto de Caza · TIGER VECTOR',
+    q_title:'Sobre Su Organización',q_sub:'Esto nos permite adaptar sus resultados al contexto de su aviación.',
+    lbl_job:'CARGO',lbl_sector:'SECTOR DE AVIACIÓN',lbl_size:'TAMAÑO DE LA EMPRESA',lbl_country:'PAÍS',
+    opt_sel:'Seleccione su cargo...',opt_ceo:'CEO / Presidente',opt_safety:'Director de Seguridad Aérea / CSO',
+    opt_ops:'Director de Operaciones',opt_qual:'Director de Calidad',opt_exec:'Otro Ejecutivo',
+    opt_sel2:'Seleccione su sector...',opt_sel3:'Seleccione tamaño...',opt_sel4:'Seleccione país...',
+    btn_cont:'CONTINUAR →',
+    lbl_dis:'Totalmente en Desacuerdo',lbl_agr:'Totalmente de Acuerdo',
+    btn_back:'← Atrás',btn_next:'Siguiente →',
+    lead_title:'Sus Resultados Están Listos',lead_sub:'Ingrese sus datos para ver su Nivel de Madurez en Cultura de Seguridad.',
+    lbl_name:'NOMBRE COMPLETO *',lbl_email:'CORREO DE TRABAJO *',lbl_company:'EMPRESA / ORGANIZACIÓN *',lbl_phone:'TELÉFONO (OPCIONAL)',
+    btn_view:'VER MIS RESULTADOS →',privacy:'🔒 Su información es confidencial y nunca será compartida.',
+    load_h:'Analizando sus respuestas...',load_sub:'Calculando su Nivel de Madurez en Cultura de Seguridad',
+    ls_0:'Evaluando Compromiso del Liderazgo',ls_1:'Evaluando Indicadores de Just Culture',
+    ls_2:'Analizando Cultura de Reporte',ls_3:'Revisando Prácticas de Aprendizaje',
+    ls_4:'Midiendo Flujos de Comunicación',ls_5:'Revisando Gestión del Cambio',
+    ls_6:'Evaluando Participación del Equipo',ls_7:'Generando Recomendaciones Personalizadas',
+    res_sub:'Safety Culture Maturity Assessment',res_your:'SU PUNTAJE DE MADUREZ',res_of:'de 100',
+    res_dims:'8 DIMENSIONES — SU PERFIL',auth_cred:'Piloto de Caza · Fundador, TIGER VECTOR · Experto en Seguridad Aérea',
+    err_req:'Por favor complete todos los campos requeridos.',err_email:'Por favor ingrese un correo de trabajo válido.',
+    cta_urgency:'SU SITUACIÓN:',cta_book:'RESERVE SESIÓN GRATUITA 30 MIN →',
+    cta_note:'Sin compromiso. Con datos reales. Sale sabiendo exactamente dónde está su organización y qué corregir primero.',
+    id_mod:'IDENTIDAD ESTRATÉGICA',id_badge:'IDENTIDAD ESTRATÉGICA',
+    id_intro_txt:'Más allá de los sistemas — ¿qué hace realmente su organización bajo presión?',
+    id_type_lbl:'SU IDENTIDAD ESTRATÉGICA',
+    id_type_sc_name:'IDENTIDAD ESTRATÉGICA CONFIGURADA',
+    id_type_ba_name:'EQUILIBRADO PERO EXPUESTO',
+    id_type_cd_name:'ORIENTADO AL CUMPLIMIENTO'
+  }
+};
+
+// ══════════════════════════════════════════
+// QUESTIONS
+// ══════════════════════════════════════════
+const QS = [
+  { dim:'D1', color:'#E63946',
+    dimName:{en:'LEADERSHIP',es:'LIDERAZGO'},
+    en:'When operational pressure conflicts with safety, leadership consistently chooses safety — without exception.',
+    es:'Cuando la presión operacional entra en conflicto con la seguridad, el liderazgo elige la seguridad — sin excepción.' },
+  { dim:'D2', color:'#D97706',
+    dimName:{en:'JUST CULTURE',es:'JUST CULTURE'},
+    en:'When someone reports an error or near-miss, the first response is learning — not blame or discipline.',
+    es:'Cuando alguien reporta un error o casi-accidente, la primera respuesta es aprender — no culpar ni sancionar.' },
+  { dim:'D3', color:'#EAB308',
+    dimName:{en:'REPORTING CULTURE',es:'CULTURA DE REPORTE'},
+    en:'People in your organization report safety concerns freely, even when it might delay operations or cost money.',
+    es:'Las personas en su organización reportan libremente, incluso cuando eso puede retrasar operaciones o costar dinero.' },
+  { dim:'D4', color:'#059669',
+    dimName:{en:'LEARNING CULTURE',es:'APRENDIZAJE ORGANIZACIONAL'},
+    en:'When an incident occurs, your organization identifies and fixes the root cause — not just the immediate symptom.',
+    es:'Cuando ocurre un evento, su organización identifica y corrige la causa raíz — no solo el síntoma inmediato.' },
+  { dim:'D5', color:'#2563EB',
+    dimName:{en:'COMMUNICATION',es:'COMUNICACIÓN'},
+    en:'Critical safety information flows clearly between all levels — from frontline operations to the boardroom.',
+    es:'La información crítica de seguridad fluye claramente entre todos los niveles — desde operaciones hasta la dirección.' },
+  { dim:'D6', color:'#7C3AED',
+    dimName:{en:'CHANGE MANAGEMENT',es:'GESTIÓN DEL CAMBIO'},
+    en:'Before implementing new procedures or technology, your organization formally assesses the safety implications.',
+    es:'Antes de implementar nuevos procedimientos o tecnología, su organización evalúa formalmente las implicaciones de seguridad.' },
+  { dim:'D7', color:'#0891B2',
+    dimName:{en:'PARTICIPATION',es:'PARTICIPACIÓN'},
+    en:'Frontline personnel actively participate in identifying risks and designing safety solutions — not just following orders.',
+    es:'El personal de primera línea participa activamente en identificar riesgos y diseñar soluciones — no solo en seguir órdenes.' },
+  { dim:'D8', color:'#DB2777',
+    dimName:{en:'RESOURCES',es:'RECURSOS'},
+    en:'Your organization consistently allocates sufficient budget, time, and personnel to safety activities — not only after an accident.',
+    es:'Su organización asigna consistentemente presupuesto, tiempo y personal a actividades de seguridad — no solo después de un accidente.' }
+];
+
+// ══════════════════════════════════════════
+// MATURITY LEVELS
+// ══════════════════════════════════════════
+const LEVELS = [
+  { min:0, max:39, n:'N1', color:'#E63946',
+    en:{ name:'REACTIVE', desc:'Your organization only responds after accidents happen. Safety is reactive, not proactive. This is the highest-risk profile in our analysis of Colombian aviation — and the most common.', cta:"Your operation is at critical risk. One conversation could be the difference between the next incident and preventing it.", urgency:'CRITICAL RISK' },
+    es:{ name:'REACTIVO', desc:'Su organización solo responde después de que ocurren los accidentes. La seguridad es reactiva, no proactiva. Este es el perfil de mayor riesgo en nuestro análisis — y el más común en aviación colombiana.', cta:'Su operación está en riesgo crítico. Una conversación puede marcar la diferencia entre el próximo incidente y prevenirlo.', urgency:'RIESGO CRÍTICO' }},
+  { min:40, max:54, n:'N2', color:'#D97706',
+    en:{ name:'AWARE', desc:'You recognize the problem exists, but lack the tools and systems to measure and manage it consistently. The gap between policy and practice is wide — and accidents live in that gap.', cta:"You see the problem — but without measurement, you can't close it. Let's talk about what that looks like for your operation.", urgency:'ACTION NEEDED' },
+    es:{ name:'CONSCIENTE', desc:'Reconoce que el problema existe, pero le faltan las herramientas para medirlo y gestionarlo. La brecha entre política y práctica es amplia — y los accidentes viven en esa brecha.', cta:'Ve el problema — pero sin medición, no puede cerrarlo. Hablemos de cómo se ve eso en su operación.', urgency:'ACCIÓN NECESARIA' }},
+  { min:55, max:69, n:'N3', color:'#EAB308',
+    en:{ name:'MANAGED', desc:"You have a formal SMS and apply it. Your foundation is solid. But cultural gaps still exist — particularly in just culture and voluntary reporting. The CFIT accidents in Colombia happened in organizations at this level.", cta:"You have the foundation. Let's identify the specific gaps before the next incident does it for you.", urgency:'GAPS TO CLOSE' },
+    es:{ name:'GESTIONADO', desc:'Tiene un SMS formal y lo aplica. Su base es sólida. Pero aún existen brechas culturales — especialmente en just culture y reporte voluntario. Los accidentes CFIT en Colombia ocurrieron en organizaciones en este nivel.', cta:'Tiene la base. Identifiquemos las brechas específicas antes de que el próximo incidente lo haga por usted.', urgency:'BRECHAS A CERRAR' }},
+  { min:70, max:84, n:'N4', color:'#059669',
+    en:{ name:'INTEGRATED', desc:"Safety culture is embedded in your operational DNA. You're ahead of most aviation organizations in the region. The next step is turning this into a continuous, measurable system that doesn't depend on individuals.", cta:"You're ahead of most. Let's build the system that keeps you there — independent of who is in the seat.", urgency:'OPTIMIZE FURTHER' },
+    es:{ name:'INTEGRADO', desc:'La cultura de seguridad está integrada en su ADN operacional. Está por delante de la mayoría en la región. El siguiente paso es convertir esto en un sistema continuo y medible que no dependa de individuos.', cta:'Está por delante de la mayoría. Construyamos el sistema que lo mantiene ahí — independiente de quién esté en el asiento.', urgency:'OPTIMIZAR MÁS' }},
+  { min:85, max:100, n:'N5', color:'#2563EB',
+    en:{ name:'GENERATIVE', desc:"You anticipate risks before they emerge. Your organization is a reference model for aviation safety culture. This is world-class — and it's verifiable with data.", cta:"You're world-class. Let's validate it with data and position you as the reference model for your sector.", urgency:'WORLD CLASS' },
+    es:{ name:'GENERATIVO', desc:'Anticipa los riesgos antes de que emerjan. Su organización es un modelo de referencia para la cultura de seguridad aérea. Esto es clase mundial — y es verificable con datos.', cta:'Es de clase mundial. Validémoslo con datos y posicionémoslo como el modelo de referencia para su sector.', urgency:'CLASE MUNDIAL' }}
+];
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+let lang = localStorage.getItem('tv_lang') || 'en';
+let curQ = 0, answers = new Array(8).fill(0);
+let curIQ = 0, identityAnswers = [null,null,null], identityType = '';
+let qualifier = {}, leadData = {};
+
+// ══════════════════════════════════════════
+// IDENTITY QUESTIONS
+// ══════════════════════════════════════════
+const IQS = [
+  { en:"When a pilot or technician delays a departure for a thorough safety inspection, what typically happens?",
+    es:"Cuando un piloto o técnico retrasa una salida por una inspección minuciosa de seguridad, ¿qué ocurre típicamente?",
+    opts:{
+      en:["They are recognized — that behavior is exactly what we expect and reinforce.",
+          "Operations may apply pressure — safety matters, but so does the schedule.",
+          "They are seen as someone who doesn't understand the business reality."],
+      es:["Se le reconoce — ese comportamiento es exactamente lo que esperamos y reforzamos.",
+          "Operaciones puede presionarlos — la seguridad importa, pero también el itinerario.",
+          "Se le ve como alguien que no entiende la realidad del negocio."]
+    }
+  },
+  { en:"In the last 12 months, has your organization explicitly given up revenue or efficiency to maintain a safety standard?",
+    es:"En los últimos 12 meses, ¿su organización ha renunciado explícitamente a ingresos o eficiencia para mantener un estándar de seguridad?",
+    opts:{
+      en:["Yes — we cancelled or rejected specific work because it compromised our safety standards.",
+          "We try to balance both — we have never truly had to choose completely.",
+          "Safety and operational efficiency are not in conflict in our organization."],
+      es:["Sí — cancelamos o rechazamos trabajo específico porque comprometía nuestros estándares.",
+          "Tratamos de balancear ambos — nunca hemos tenido que elegir completamente.",
+          "La seguridad y la eficiencia operacional no están en conflicto en nuestra organización."]
+    }
+  },
+  { en:"When an incident occurs in your organization, what is the first conversation in the hallway?",
+    es:"Cuando ocurre un incidente en su organización, ¿cuál es la primera conversación en el pasillo?",
+    opts:{
+      en:["What failed in our system — and how we redesign the process to prevent recurrence.",
+          "It depends — sometimes we look at the person, sometimes at the system.",
+          "Who made the error and what we do to ensure it does not happen again."],
+      es:["¿Qué falló en nuestro sistema? — y cómo rediseñamos el proceso para evitar recurrencias.",
+          "Depende — a veces miramos a la persona, a veces al sistema.",
+          "¿Quién cometió el error y qué hacemos para que no vuelva a ocurrir?"]
+    }
+  }
+];
+
+const ITYPES = [
+  { min:7, max:9, key:'SC', color:'#059669',
+    en:{ name:'STRATEGICALLY CONFIGURED',
+         desc:"Safety is your competitive advantage. Your organization is built to dominate risk — not hide it. Incentives, people, and structure are aligned around one north star: operate where others don't dare.",
+         cta:"You've built something rare. Let's validate it with data and position your organization as the reference model for your sector." },
+    es:{ name:'IDENTIDAD ESTRATÉGICA CONFIGURADA',
+         desc:"La seguridad es su ventaja competitiva. Su organización está configurada para dominar el riesgo — no para esconderlo. Los incentivos, las personas y la estructura están alineados: operar donde otros no se atreven.",
+         cta:"Ha construido algo poco común. Validémoslo con datos y posicionemos su organización como el modelo de referencia para su sector." }
+  },
+  { min:4, max:6, key:'BA', color:'#EAB308',
+    en:{ name:'BALANCED BUT EXPOSED',
+         desc:"You want safety to be strategic, but daily tension between efficiency and standards is eroding it. You don't have a safety problem — you have an alignment problem. The gap between what you say and what gets rewarded is where incidents live.",
+         cta:"You're one alignment decision away from something durable. Let's identify exactly where the tension is fracturing your culture." },
+    es:{ name:'EQUILIBRADO PERO EXPUESTO',
+         desc:"Quiere que la seguridad sea estratégica, pero la tensión diaria entre eficiencia y estándares la va erosionando. No tiene un problema de seguridad — tiene un problema de alineación. La brecha entre lo que dice y lo que se premia es donde viven los incidentes.",
+         cta:"Está a una decisión de alineación de construir algo duradero. Identifiquemos exactamente dónde la tensión está fracturando su cultura." }
+  },
+  { min:3, max:3, key:'CD', color:'#E63946',
+    en:{ name:'COMPLIANCE-DRIVEN',
+         desc:"Safety is a bureaucratic burden — reports, audits, and compliance theater. Your organization is playing not to lose, not to win. This is not a strategy. It is a ritual. And the next incident is already in the system.",
+         cta:"The next incident is already in your system. The question is whether you find it first — or it finds you. Let's talk before it does." },
+    es:{ name:'ORIENTADO AL CUMPLIMIENTO',
+         desc:"La seguridad es una carga burocrática — reportes, auditorías y teatro del cumplimiento. Su organización está jugando a no perder, no a ganar. Esto no es una estrategia. Es un ritual. Y el próximo incidente ya está en el sistema.",
+         cta:"El próximo incidente ya está en su sistema. La pregunta es si usted lo encuentra primero — o él lo encuentra a usted. Hablemos antes de que ocurra." }
+  }
+];
+
+// ══════════════════════════════════════════
+// LANGUAGE
+// ══════════════════════════════════════════
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('tv_lang', l);
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.getElementById('btn-es').classList.toggle('active', l==='es');
+  applyT();
+  if (document.getElementById('s-questions').classList.contains('active')) renderQ();
+}
+function applyT() {
+  document.querySelectorAll('[data-k]').forEach(el => {
+    const v = T[lang][el.getAttribute('data-k')];
+    if (v) el.textContent = v;
+  });
+}
+
+// ══════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════
+function goTo(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ══════════════════════════════════════════
+// QUALIFIER
+// ══════════════════════════════════════════
+function submitQualifier() {
+  const job = document.getElementById('sel-job').value;
+  const sector = document.getElementById('sel-sector').value;
+  const size = document.getElementById('sel-size').value;
+  const country = document.getElementById('sel-country').value;
+  const vals = [job, sector, size, country];
+  const ids = ['fg-job','fg-sector','fg-size','fg-country'];
+  let ok = true;
+  ids.forEach((id,i) => { const e = !vals[i]; document.getElementById(id).classList.toggle('error',e); if(e) ok=false; });
+  if (!ok) return;
+  qualifier = {job, sector, size, country};
+  curQ = 0; answers = new Array(8).fill(0);
+  renderQ(); goTo('s-questions');
+}
+
+// ══════════════════════════════════════════
+// QUESTIONS
+// ══════════════════════════════════════════
+function renderQ() {
+  const q = QS[curQ];
+  document.getElementById('q-prog').style.width = ((curQ+1)/8*100)+'%';
+  document.getElementById('q-counter').textContent = (lang==='en'?'Question ':'Pregunta ')+(curQ+1)+(lang==='en'?' of 8':' de 8');
+  document.getElementById('q-dim-lbl').textContent = q.dimName[lang];
+  document.getElementById('q-dim-lbl').style.color = q.color;
+  document.getElementById('q-badge').textContent = q.dim+' — '+q.dimName[lang];
+  document.getElementById('q-badge').style.color = q.color;
+  document.getElementById('q-text').textContent = q[lang];
+  document.getElementById('btn-back').style.visibility = curQ===0 ? 'hidden' : 'visible';
+
+  const lbls = {
+    en:['Strongly\nDisagree','Disagree','Neutral','Agree','Strongly\nAgree'],
+    es:['Totalmente\nEn Desacuerdo','En Desacuerdo','Neutral','De Acuerdo','Totalmente\nDe Acuerdo']
+  };
+  const sc = document.getElementById('q-likert');
+  sc.innerHTML = '';
+  for (let i=1;i<=5;i++) {
+    const sel = answers[curQ]===i;
+    const d = document.createElement('div');
+    d.className='lk-opt';
+    d.innerHTML=`<button class="lk-btn${sel?' sel':''}" onclick="selectA(${i})"
+      style="${sel?'background:'+q.color+';border-color:'+q.color+';color:#070D1B':''}">${i}</button>
+      <div class="lk-lbl">${lbls[lang][i-1].replace('\n','<br>')}</div>`;
+    sc.appendChild(d);
+  }
+}
+function selectA(v) { answers[curQ]=v; renderQ(); }
+function nextQ() {
+  if (!answers[curQ]) { flash('q-likert'); return; }
+  if (curQ<7) { curQ++; renderQ(); window.scrollTo(0,0); }
+  else { curIQ=0; identityAnswers=[null,null,null]; renderIQ(); goTo('s-identity'); }
+}
+function prevQ() { if(curQ>0){curQ--;renderQ();window.scrollTo(0,0);} }
+function flash(id) {
+  const el=document.getElementById(id);
+  el.style.opacity='.4'; setTimeout(()=>el.style.opacity='1',350);
+}
+
+// ══════════════════════════════════════════
+// IDENTITY MODULE
+// ══════════════════════════════════════════
+function renderIQ() {
+  const q = IQS[curIQ];
+  document.getElementById('iq-prog').style.width = ((curIQ+1)/3*100)+'%';
+  document.getElementById('iq-counter').textContent = (lang==='en'?'Question ':'Pregunta ')+(curIQ+1)+(lang==='en'?' of 3':' de 3');
+  document.getElementById('iq-text').textContent = q[lang];
+  document.getElementById('iq-btn-back').style.visibility = curIQ===0 ? 'hidden' : 'visible';
+  const isLast = curIQ===2;
+  document.getElementById('iq-btn-next').textContent = isLast ? (lang==='en'?'See My Results →':'Ver Mis Resultados →') : T[lang].btn_next;
+  const opts = document.getElementById('iq-options');
+  opts.innerHTML = '';
+  const letters = ['A','B','C'];
+  q.opts[lang].forEach((txt,i) => {
+    const sel = identityAnswers[curIQ]===i;
+    const btn = document.createElement('button');
+    btn.className = 'id-opt'+(sel?' sel':'');
+    btn.innerHTML = `<div class="id-opt-ltr">${letters[i]}</div><div class="id-opt-txt">${txt}</div>`;
+    btn.onclick = () => { identityAnswers[curIQ]=i; renderIQ(); };
+    opts.appendChild(btn);
+  });
+}
+function prevIQ() {
+  if (curIQ>0) { curIQ--; renderIQ(); window.scrollTo(0,0); }
+  else { goTo('s-questions'); }
+}
+function nextIQ() {
+  if (identityAnswers[curIQ]===null) { flash('iq-options'); return; }
+  if (curIQ<2) { curIQ++; renderIQ(); window.scrollTo(0,0); }
+  else { calcIdentity(); goTo('s-lead'); }
+}
+function calcIdentity() {
+  const score = identityAnswers.reduce((s,v) => s+(v===0?3:v===1?2:1), 0);
+  const t = ITYPES.find(t => score>=t.min && score<=t.max) || ITYPES[1];
+  identityType = t.key;
+}
+
+// ══════════════════════════════════════════
+// LEAD CAPTURE
+// ══════════════════════════════════════════
+function submitLead() {
+  const name=document.getElementById('inp-name').value.trim();
+  const email=document.getElementById('inp-email').value.trim();
+  const company=document.getElementById('inp-company').value.trim();
+  const phone=document.getElementById('inp-phone').value.trim();
+  let ok=true;
+  document.getElementById('fg-name').classList.toggle('error',!name); if(!name) ok=false;
+  document.getElementById('fg-company').classList.toggle('error',!company); if(!company) ok=false;
+  const eok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  document.getElementById('fg-email').classList.toggle('error',!eok); if(!eok) ok=false;
+  if (!ok) return;
+  leadData={name,email,company,phone};
+  goTo('s-loading'); runLoader();
+}
+
+// ══════════════════════════════════════════
+// LOADING
+// ══════════════════════════════════════════
+function runLoader() {
+  const steps=document.querySelectorAll('#load-steps .load-step');
+  let i=0;
+  const iv=setInterval(()=>{
+    if(i>0) steps[i-1].className='load-step done';
+    if(i<steps.length){ steps[i].className='load-step active'; i++; }
+    else { clearInterval(iv); sendData(); setTimeout(()=>{buildResults();goTo('s-results');},400); }
+  },420);
+}
+
+// ══════════════════════════════════════════
+// GOOGLE SHEETS
+// ══════════════════════════════════════════
+function sendData() {
+  const score=calcScore();
+  const lv=getLevel(score);
+  const payload={
+    ...leadData,...qualifier,
+    d1:answers[0],d2:answers[1],d3:answers[2],d4:answers[3],
+    d5:answers[4],d6:answers[5],d7:answers[6],d8:answers[7],
+    totalScore:score,
+    maturityLevel:lv.n+' — '+lv[lang].name,
+    identityType:identityType,
+    identityQ1:identityAnswers[0],identityQ2:identityAnswers[1],identityQ3:identityAnswers[2],
+    language:lang,
+    timestamp:new Date().toISOString()
+  };
+  if (SHEETS_URL!=='YOUR_GOOGLE_APPS_SCRIPT_URL') {
+    fetch(SHEETS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});
+  }
+}
+
+// ══════════════════════════════════════════
+// RESULTS
+// ══════════════════════════════════════════
+function calcScore() { return Math.round((answers.reduce((a,b)=>a+b,0)/40)*100); }
+function getLevel(s) { return LEVELS.find(l=>s>=l.min&&s<=l.max)||LEVELS[0]; }
+
+function buildResults() {
+  const score=calcScore();
+  const lv=getLevel(score);
+  const ld=lv[lang];
+
+  animNum('res-score',0,score,1100);
+
+  // Needle: score 0→100 maps to -90°→+90°
+  const deg=(score/100)*180-90;
+  document.getElementById('needle').setAttribute('transform',`rotate(${deg},100,102)`);
+
+  // Badge
+  const badge=document.getElementById('res-badge');
+  badge.textContent=lv.n+' — '+ld.name;
+  badge.style.cssText=`background:${lv.color}22;color:${lv.color};border:1px solid ${lv.color}66`;
+
+  document.getElementById('res-desc').textContent=ld.desc;
+
+  // Strategic Identity card
+  const it = ITYPES.find(t=>t.key===identityType)||ITYPES[1];
+  const itd = it[lang];
+  const idCard = document.createElement('div');
+  idCard.className='card';
+  idCard.style.cssText='margin-bottom:1rem;border-color:'+it.color+'55';
+  idCard.innerHTML=`
+    <p style="font-size:10px;letter-spacing:3px;color:${it.color};font-weight:700;margin-bottom:8px">${T[lang].id_type_lbl||'YOUR STRATEGIC IDENTITY'}</p>
+    <div style="display:inline-flex;align-items:center;gap:8px;background:${it.color}20;border:1px solid ${it.color}55;border-radius:8px;padding:8px 16px;margin-bottom:10px">
+      <span style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:${it.color}">${itd.name}</span>
+    </div>
+    <p style="font-size:13px;color:#94A3B8;line-height:1.7">${itd.desc}</p>`;
+  const dimCard = document.getElementById('dim-bars').closest('.card');
+  dimCard.parentNode.insertBefore(idCard, dimCard);
+
+  // Dimension bars
+  const bars=document.getElementById('dim-bars');
+  bars.innerHTML='';
+  QS.forEach((q,i)=>{
+    const pct=Math.round((answers[i]/5)*100);
+    bars.innerHTML+=`<div class="dim-bar-row">
+      <div class="dim-bar-hdr">
+        <span class="dim-bar-name" style="color:${q.color}">${q.dim} — ${q.dimName[lang]}</span>
+        <span class="dim-bar-pct">${pct}%</span>
+      </div>
+      <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:${pct}%;background:${q.color}"></div></div>
+    </div>`;
+  });
+
+  // CTA
+  const t=T[lang];
+  const cta=document.getElementById('res-cta');
+  cta.innerHTML=`<div style="background:${lv.color}12;border:1px solid ${lv.color}44;border-radius:12px;padding:1.5rem;text-align:center">
+    <div style="display:inline-block;padding:4px 14px;background:${lv.color};border-radius:20px;
+      font-size:10px;font-weight:700;color:#070D1B;letter-spacing:2px;margin-bottom:12px">
+      ${t.cta_urgency} ${ld.urgency}
+    </div>
+    <p style="font-size:18px;font-weight:700;color:#fff;line-height:1.5;margin-bottom:8px">${ld.cta}</p>
+    <p style="font-size:12px;color:#64748B;margin-bottom:1.5rem;line-height:1.6">${t.cta_note}</p>
+    <a href="${CALENDLY}?name=${encodeURIComponent(leadData.name)}&email=${encodeURIComponent(leadData.email)}"
+       target="_blank"
+       style="display:block;background:${lv.color};color:#070D1B;padding:16px;border-radius:8px;
+              font-weight:700;font-size:15px;letter-spacing:.5px;text-decoration:none">
+      ${t.cta_book}
+    </a>
+  </div>`;
+}
+
+function animNum(id,from,to,dur) {
+  const el=document.getElementById(id);
+  const s=performance.now();
+  (function step(ts){
+    const p=Math.min((ts-s)/dur,1);
+    el.textContent=Math.round(from+(to-from)*p);
+    if(p<1) requestAnimationFrame(step);
+  })(performance.now());
+}
+
+// ══════════════════════════════════════════
+// COUNTRIES — full world list (ISO 3166-1)
+// ══════════════════════════════════════════
+(function(){
+  const C='Afghanistan,Albania,Algeria,Andorra,Angola,Antigua and Barbuda,Argentina,Armenia,Australia,Austria,Azerbaijan,Bahamas,Bahrain,Bangladesh,Barbados,Belarus,Belgium,Belize,Benin,Bhutan,Bolivia,Bosnia and Herzegovina,Botswana,Brazil,Brunei,Bulgaria,Burkina Faso,Burundi,Cabo Verde,Cambodia,Cameroon,Canada,Central African Republic,Chad,Chile,China,Colombia,Comoros,Congo,Costa Rica,Croatia,Cuba,Cyprus,Czech Republic,Denmark,Djibouti,Dominica,Dominican Republic,Ecuador,Egypt,El Salvador,Equatorial Guinea,Eritrea,Estonia,Eswatini,Ethiopia,Fiji,Finland,France,Gabon,Gambia,Georgia,Germany,Ghana,Greece,Grenada,Guatemala,Guinea,Guinea-Bissau,Guyana,Haiti,Honduras,Hungary,Iceland,India,Indonesia,Iran,Iraq,Ireland,Israel,Italy,Jamaica,Japan,Jordan,Kazakhstan,Kenya,Kiribati,Kosovo,Kuwait,Kyrgyzstan,Laos,Latvia,Lebanon,Lesotho,Liberia,Libya,Liechtenstein,Lithuania,Luxembourg,Madagascar,Malawi,Malaysia,Maldives,Mali,Malta,Marshall Islands,Mauritania,Mauritius,Mexico,Micronesia,Moldova,Monaco,Mongolia,Montenegro,Morocco,Mozambique,Myanmar,Namibia,Nauru,Nepal,Netherlands,New Zealand,Nicaragua,Niger,Nigeria,North Korea,North Macedonia,Norway,Oman,Pakistan,Palau,Palestine,Panama,Papua New Guinea,Paraguay,Peru,Philippines,Poland,Portugal,Qatar,Romania,Russia,Rwanda,Saint Kitts and Nevis,Saint Lucia,Saint Vincent and the Grenadines,Samoa,San Marino,Sao Tome and Principe,Saudi Arabia,Senegal,Serbia,Seychelles,Sierra Leone,Singapore,Slovakia,Slovenia,Solomon Islands,Somalia,South Africa,South Korea,South Sudan,Spain,Sri Lanka,Sudan,Suriname,Sweden,Switzerland,Syria,Taiwan,Tajikistan,Tanzania,Thailand,Timor-Leste,Togo,Tonga,Trinidad and Tobago,Tunisia,Turkey,Turkmenistan,Tuvalu,Uganda,Ukraine,United Arab Emirates,United Kingdom,United States,Uruguay,Uzbekistan,Vanuatu,Venezuela,Vietnam,Yemen,Zambia,Zimbabwe';
+  const sel=document.getElementById('sel-country');
+  C.split(',').forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;sel.appendChild(o);});
+})();
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+setLang(lang);
+</script>
+</body>
+</html>
