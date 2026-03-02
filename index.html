@@ -6,74 +6,74 @@
   <title>Safety Culture Maturity Assessment — TIGER VECTOR</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#070D1B;min-height:100vh;color:#fff}
-    .screen{display:none;min-height:100vh;padding:2rem 1rem;animation:fadeIn .4s ease}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#070D1B;min-height:100vh;color:#0F172A}
+    .screen{display:none;min-height:100vh;padding:2.5rem 1rem;animation:fadeIn .4s ease}
     .screen.active{display:flex;flex-direction:column;align-items:center;justify-content:center}
     @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-    .container{width:100%;max-width:620px}
+    .container{width:100%;max-width:760px}
     .tv-header{text-align:center;margin-bottom:1.5rem}
     .tv-wordmark{font-size:13px;font-weight:700;letter-spacing:4px;color:#F0C040;margin-bottom:3px}
-    .tv-subtitle{font-size:9px;letter-spacing:2px;color:#475569;text-transform:uppercase}
+    .tv-subtitle{font-size:9px;letter-spacing:2px;color:#94A3B8;text-transform:uppercase}
     .tv-line{width:50px;height:2px;background:#F0C040;margin:10px auto}
-    .card{background:#0A1628;border:1px solid #1B3A6B;border-radius:14px;padding:2rem}
-    .btn-gold{background:#F0C040;color:#070D1B;border:none;padding:15px 32px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;width:100%;letter-spacing:.5px;transition:background .2s}
+    .card{background:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:2.25rem 2.5rem;box-shadow:0 4px 24px rgba(0,0,0,.18)}
+    .btn-gold{background:#F0C040;color:#070D1B;border:none;padding:16px 32px;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;width:100%;letter-spacing:.5px;transition:background .2s}
     .btn-gold:hover{background:#FFD060}
-    .btn-ghost{background:transparent;color:#64748B;border:1px solid #1B3A6B;padding:12px 20px;border-radius:8px;font-size:14px;cursor:pointer;transition:all .2s;white-space:nowrap}
-    .btn-ghost:hover{border-color:#F0C040;color:#F0C040}
-    .form-group{margin-bottom:1rem}
+    .btn-ghost{background:transparent;color:#64748B;border:1.5px solid #CBD5E1;padding:12px 20px;border-radius:10px;font-size:14px;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .btn-ghost:hover{border-color:#F0C040;color:#B8860B}
+    .form-group{margin-bottom:1.1rem}
     .form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;color:#64748B;margin-bottom:6px;text-transform:uppercase}
-    .form-group select,.form-group input{width:100%;background:#0F1E35;border:1px solid #1B3A6B;border-radius:8px;padding:13px 16px;color:#fff;font-size:15px;outline:none;transition:border-color .2s;-webkit-appearance:none}
+    .form-group select,.form-group input{width:100%;background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:10px;padding:13px 16px;color:#0F172A;font-size:15px;outline:none;transition:border-color .2s;-webkit-appearance:none}
     .form-group select:focus,.form-group input:focus{border-color:#F0C040}
     .form-group.error select,.form-group.error input{border-color:#E63946}
-    .form-group select option{background:#0F1E35}
+    .form-group select option{background:#FFFFFF;color:#0F172A}
     .prog-wrap{margin-bottom:1.25rem}
-    .prog-info{display:flex;justify-content:space-between;font-size:13px;color:#64748B;margin-bottom:8px;font-weight:500}
-    .prog-bar{height:4px;background:#1B3A6B;border-radius:2px;overflow:hidden}
-    .prog-fill{height:100%;background:#F0C040;border-radius:2px;transition:width .4s ease}
+    .prog-info{display:flex;justify-content:space-between;font-size:13px;color:#64748B;margin-bottom:8px;font-weight:600}
+    .prog-bar{height:5px;background:#E2E8F0;border-radius:3px;overflow:hidden}
+    .prog-fill{height:100%;background:#F0C040;border-radius:3px;transition:width .4s ease}
     .likert{display:flex;gap:8px;margin:1.5rem 0 .5rem}
     .lk-opt{flex:1;text-align:center;cursor:pointer}
-    .lk-btn{width:100%;aspect-ratio:1;border-radius:8px;border:2px solid #1B3A6B;background:#0F1E35;color:#64748B;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
-    .lk-btn:hover{border-color:#F0C040;color:#F0C040}
+    .lk-btn{width:100%;aspect-ratio:1;border-radius:10px;border:2px solid #E2E8F0;background:#F8FAFC;color:#334155;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+    .lk-btn:hover{border-color:#F0C040;color:#B8860B;background:#FFFBEB}
     .lk-btn.sel{background:#F0C040;border-color:#F0C040;color:#070D1B}
     .lk-lbl{font-size:10px;color:#64748B;margin-top:6px;line-height:1.3}
-    .dim-badge{display:inline-flex;align-items:center;gap:6px;background:#0F1E35;border:1px solid #1B3A6B;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:1rem}
+    .dim-badge{display:inline-flex;align-items:center;gap:6px;background:#FFF8E1;border:1.5px solid #F0C040;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:1rem;color:#92700A}
     .stats-row{display:flex;gap:10px;margin:1.25rem 0}
-    .stat-card{flex:1;background:#0F1E35;border:1px solid #1B3A6B;border-radius:8px;padding:14px 6px;text-align:center}
-    .stat-n{font-size:26px;font-weight:700;color:#F0C040;line-height:1}
-    .stat-l{font-size:9px;color:#475569;letter-spacing:1px;margin-top:3px}
-    .spinner{width:52px;height:52px;border:3px solid #1B3A6B;border-top-color:#F0C040;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1.25rem}
+    .stat-card{flex:1;background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:10px;padding:16px 6px;text-align:center}
+    .stat-n{font-size:28px;font-weight:800;color:#F0C040;line-height:1}
+    .stat-l{font-size:9px;color:#64748B;letter-spacing:1px;margin-top:4px;font-weight:600}
+    .spinner{width:52px;height:52px;border:3px solid #E2E8F0;border-top-color:#F0C040;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1.25rem}
     @keyframes spin{to{transform:rotate(360deg)}}
     .load-steps{list-style:none}
-    .load-step{display:flex;align-items:center;gap:10px;padding:9px 0;font-size:15px;color:#475569;transition:color .3s}
+    .load-step{display:flex;align-items:center;gap:10px;padding:9px 0;font-size:15px;color:#64748B;transition:color .3s}
     .load-step.done{color:#059669}
-    .load-step.active{color:#F0C040}
-    .step-dot{width:7px;height:7px;border-radius:50%;background:#1B3A6B;flex-shrink:0}
+    .load-step.active{color:#B8860B}
+    .step-dot{width:7px;height:7px;border-radius:50%;background:#E2E8F0;flex-shrink:0}
     .load-step.done .step-dot{background:#059669}
     .load-step.active .step-dot{background:#F0C040;animation:pulse .8s infinite}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-    .score-big{font-size:80px;font-weight:800;color:#F0C040;line-height:1;text-align:center}
-    .score-of{font-size:15px;color:#94A3B8;text-align:center;margin-top:4px}
+    .score-big{font-size:82px;font-weight:800;color:#F0C040;line-height:1;text-align:center}
+    .score-of{font-size:15px;color:#64748B;text-align:center;margin-top:4px;font-weight:600}
     .level-badge{display:inline-block;padding:8px 22px;border-radius:20px;font-size:13px;font-weight:700;letter-spacing:2px}
-    .dim-bar-row{margin-bottom:14px}
+    .dim-bar-row{margin-bottom:16px}
     .dim-bar-hdr{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
-    .dim-bar-name{font-weight:600;letter-spacing:.3px;color:#CBD5E1}
+    .dim-bar-name{font-weight:700;letter-spacing:.3px;color:#334155}
     .dim-bar-pct{color:#F0C040;font-weight:700;font-size:14px}
-    .dim-bar-bg{height:7px;background:#1B3A6B;border-radius:4px;overflow:hidden}
+    .dim-bar-bg{height:8px;background:#F1F5F9;border-radius:4px;overflow:hidden}
     .dim-bar-fill{height:100%;border-radius:4px;transition:width 1.2s ease}
-    .cta-box{border-radius:12px;padding:1.5rem;text-align:center;margin-top:1rem}
+    .cta-box{border-radius:14px;padding:1.75rem;text-align:center;margin-top:1rem}
     .hr-gold{border:none;height:1px;background:linear-gradient(90deg,transparent,#F0C040,transparent);margin:1.25rem 0}
     .lang-toggle{position:fixed;top:14px;right:14px;z-index:200;display:flex;gap:3px;background:#0A1628;border:1px solid #1B3A6B;border-radius:20px;padding:3px}
-    .lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;background:transparent;color:#475569}
+    .lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;background:transparent;color:#94A3B8}
     .lang-btn.active{background:#F0C040;color:#070D1B}
     .nav-btns{display:flex;gap:10px;margin-top:1.25rem}
     .nav-btns .btn-gold{flex:1}
     .privacy{font-size:13px;color:#64748B;text-align:center;margin-top:12px}
-    @media(max-width:480px){.score-big{font-size:64px}.card{padding:1.75rem 1.25rem}.lk-btn{font-size:15px}.dim-bar-hdr{font-size:12px}}
-    .id-opt{background:#0F1E35;border:2px solid #1B3A6B;border-radius:10px;padding:14px 16px;cursor:pointer;margin-bottom:10px;transition:all .2s;text-align:left;width:100%;display:block}
-    .id-opt:hover{border-color:#F0C040;background:#F0C04010}
-    .id-opt.sel{border-color:#F0C040;background:#F0C04020}
-    .id-opt-ltr{font-size:11px;font-weight:700;color:#F0C040;letter-spacing:2px;margin-bottom:6px}
-    .id-opt-txt{font-size:15px;color:#CBD5E1;line-height:1.6}
+    @media(max-width:600px){.score-big{font-size:64px}.card{padding:1.75rem 1.25rem}.lk-btn{font-size:15px}.dim-bar-hdr{font-size:12px}}
+    .id-opt{background:#F8FAFC;border:2px solid #E2E8F0;border-radius:12px;padding:15px 18px;cursor:pointer;margin-bottom:10px;transition:all .2s;text-align:left;width:100%;display:block}
+    .id-opt:hover{border-color:#F0C040;background:#FFFBEB}
+    .id-opt.sel{border-color:#F0C040;background:#FFF8E1}
+    .id-opt-ltr{font-size:11px;font-weight:700;color:#B8860B;letter-spacing:2px;margin-bottom:6px}
+    .id-opt-txt{font-size:15px;color:#334155;line-height:1.6}
   </style>
 </head>
 <body>
@@ -94,19 +94,19 @@
     </div>
     <div class="card">
       <!-- Expert credential bar -->
-      <div style="text-align:center;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #1B3A6B">
-        <p style="font-size:10px;font-weight:700;letter-spacing:3px;color:#F0C040;margin-bottom:2px" data-k="intro_cred1">45+ YEARS · FIGHTER PILOT · AVIATION SAFETY EXPERT</p>
-        <p style="font-size:11px;color:#475569;letter-spacing:1px" data-k="intro_cred2">Daniel Meléndez · TIGER VECTOR</p>
+      <div style="text-align:center;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:2px solid #F0C04033">
+        <p style="font-size:10px;font-weight:700;letter-spacing:3px;color:#B8860B;margin-bottom:2px" data-k="intro_cred1">45+ YEARS · FIGHTER PILOT · AVIATION SAFETY EXPERT</p>
+        <p style="font-size:11px;color:#64748B;letter-spacing:1px" data-k="intro_cred2">Daniel Meléndez · TIGER VECTOR</p>
       </div>
 
       <!-- Title -->
-      <h1 style="font-size:26px;font-weight:800;line-height:1.2;text-align:center;margin-bottom:.75rem">
+      <h1 style="font-size:30px;font-weight:800;line-height:1.2;text-align:center;margin-bottom:.75rem;color:#0F172A">
         <span data-k="intro_h1a">Safety Culture</span><br>
         <span style="color:#F0C040" data-k="intro_h1b">Maturity Assessment</span>
       </h1>
 
       <!-- Description -->
-      <p style="font-size:15px;color:#CBD5E1;text-align:center;line-height:1.7;margin-bottom:1.5rem" data-k="intro_sub">
+      <p style="font-size:16px;color:#475569;text-align:center;line-height:1.75;margin-bottom:1.5rem" data-k="intro_sub">
         Evaluate your organization's safety culture across 8 critical dimensions and understand your strategic identity with this expert-developed diagnostic tool.
       </p>
 
@@ -118,7 +118,7 @@
       </div>
 
       <hr class="hr-gold">
-      <p style="font-size:12px;color:#475569;text-align:center;margin-bottom:1.25rem" data-k="intro_based">
+      <p style="font-size:13px;color:#64748B;text-align:center;margin-bottom:1.25rem" data-k="intro_based">
         Based on the SCMA framework — 8 dimensions + Strategic Identity module
       </p>
       <button class="btn-gold" onclick="goTo('s-qualifier')" data-k="btn_begin">BEGIN ASSESSMENT →</button>
@@ -135,8 +135,8 @@
       <div class="tv-line"></div>
     </div>
     <div class="card">
-      <h2 style="font-size:21px;font-weight:700;margin-bottom:4px" data-k="q_title">About Your Organization</h2>
-      <p style="font-size:13px;color:#64748B;margin-bottom:1.5rem" data-k="q_sub">This helps us tailor your results to your aviation context.</p>
+      <h2 style="font-size:22px;font-weight:800;margin-bottom:6px;color:#0F172A" data-k="q_title">About Your Organization</h2>
+      <p style="font-size:14px;color:#64748B;margin-bottom:1.5rem" data-k="q_sub">This helps us tailor your results to your aviation context.</p>
 
       <div class="form-group" id="fg-job">
         <label data-k="lbl_job">JOB TITLE</label>
@@ -206,9 +206,9 @@
     </div>
     <div class="card">
       <div class="dim-badge" id="q-badge">D1 — LEADERSHIP</div>
-      <h2 style="font-size:20px;font-weight:700;line-height:1.5;color:#fff" id="q-text"></h2>
+      <h2 style="font-size:20px;font-weight:700;line-height:1.55;color:#0F172A" id="q-text"></h2>
       <div class="likert" id="q-likert"></div>
-      <div style="display:flex;justify-content:space-between;font-size:9px;color:#475569;margin-top:-2px;margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#94A3B8;margin-top:-2px;margin-bottom:1rem">
         <span data-k="lbl_dis">Strongly Disagree</span>
         <span data-k="lbl_agr">Strongly Agree</span>
       </div>
@@ -226,14 +226,14 @@
     <div class="prog-wrap">
       <div class="prog-info">
         <span id="iq-counter">Question 1 of 3</span>
-        <span style="font-size:11px;font-weight:700;color:#F0C040;letter-spacing:1px" data-k="id_mod">STRATEGIC IDENTITY</span>
+        <span style="font-size:11px;font-weight:700;color:#B8860B;letter-spacing:1px" data-k="id_mod">STRATEGIC IDENTITY</span>
       </div>
       <div class="prog-bar"><div class="prog-fill" id="iq-prog" style="width:33%"></div></div>
     </div>
     <div class="card">
       <div class="dim-badge" style="color:#F0C040;border-color:#F0C04055" data-k="id_badge">STRATEGIC IDENTITY</div>
-      <p style="font-size:12px;color:#64748B;margin-bottom:1rem;line-height:1.5" data-k="id_intro_txt">Beyond systems — what does your organization really do under pressure?</p>
-      <h2 style="font-size:17px;font-weight:700;line-height:1.55;color:#fff;margin-bottom:1.25rem" id="iq-text"></h2>
+      <p style="font-size:13px;color:#64748B;margin-bottom:1rem;line-height:1.5" data-k="id_intro_txt">Beyond systems — what does your organization really do under pressure?</p>
+      <h2 style="font-size:18px;font-weight:700;line-height:1.55;color:#0F172A;margin-bottom:1.25rem" id="iq-text"></h2>
       <div id="iq-options"></div>
       <div class="nav-btns" style="margin-top:1.25rem">
         <button class="btn-ghost" id="iq-btn-back" onclick="prevIQ()" data-k="btn_back">← Back</button>
@@ -252,8 +252,8 @@
     </div>
     <div class="card">
       <div style="text-align:center;margin-bottom:.75rem;font-size:28px">📊</div>
-      <h2 style="font-size:22px;font-weight:700;text-align:center;margin-bottom:5px" data-k="lead_title">Your Results Are Ready</h2>
-      <p style="font-size:13px;color:#64748B;text-align:center;margin-bottom:1.25rem" data-k="lead_sub">Enter your details to view your Safety Culture Maturity Level.</p>
+      <h2 style="font-size:24px;font-weight:800;text-align:center;margin-bottom:5px;color:#0F172A" data-k="lead_title">Your Results Are Ready</h2>
+      <p style="font-size:14px;color:#64748B;text-align:center;margin-bottom:1.25rem" data-k="lead_sub">Enter your details to view your Safety Culture Maturity Level.</p>
       <hr class="hr-gold">
       <div class="form-group" id="fg-name">
         <label data-k="lbl_name">FULL NAME *</label>
@@ -285,8 +285,8 @@
       <div class="tv-line"></div>
     </div>
     <div class="spinner"></div>
-    <h3 style="font-size:18px;font-weight:700;margin-bottom:4px" data-k="load_h">Analyzing your responses...</h3>
-    <p style="font-size:13px;color:#64748B;margin-bottom:1.25rem" data-k="load_sub">Calculating your Safety Culture Maturity Level</p>
+    <h3 style="font-size:18px;font-weight:700;margin-bottom:4px;color:#F0C040" data-k="load_h">Analyzing your responses...</h3>
+    <p style="font-size:14px;color:#94A3B8;margin-bottom:1.25rem" data-k="load_sub">Calculating your Safety Culture Maturity Level</p>
     <div class="card" style="text-align:left">
       <ul class="load-steps" id="load-steps">
         <li class="load-step" id="ls0"><span class="step-dot"></span><span data-k="ls_0">Evaluating Leadership Commitment</span></li>
@@ -313,7 +313,7 @@
 
     <!-- Score card -->
     <div class="card" style="text-align:center;margin-bottom:1rem">
-      <p style="font-size:10px;letter-spacing:3px;color:#64748B;margin-bottom:8px" data-k="res_your">YOUR MATURITY SCORE</p>
+      <p style="font-size:10px;letter-spacing:3px;color:#94A3B8;margin-bottom:8px;font-weight:700" data-k="res_your">YOUR MATURITY SCORE</p>
       <div class="score-big" id="res-score">—</div>
       <div class="score-of" data-k="res_of">out of 100</div>
 
@@ -335,12 +335,12 @@
       </div>
 
       <span class="level-badge" id="res-badge" style="margin-top:.5rem">—</span>
-      <p style="font-size:15px;color:#CBD5E1;margin-top:14px;line-height:1.75;text-align:left" id="res-desc"></p>
+      <p style="font-size:15px;color:#334155;margin-top:14px;line-height:1.75;text-align:left" id="res-desc"></p>
     </div>
 
     <!-- Dimension bars -->
     <div class="card" style="margin-bottom:1rem">
-      <p style="font-size:10px;letter-spacing:2px;color:#F0C040;font-weight:700;margin-bottom:1.1rem" data-k="res_dims">8 DIMENSIONS — YOUR PROFILE</p>
+      <p style="font-size:10px;letter-spacing:2px;color:#B8860B;font-weight:700;margin-bottom:1.1rem" data-k="res_dims">8 DIMENSIONS — YOUR PROFILE</p>
       <div id="dim-bars"></div>
     </div>
 
@@ -350,8 +350,8 @@
     <!-- Footer -->
     <div style="text-align:center;margin-top:1.5rem">
       <p style="font-size:15px;font-weight:700;color:#F0C040">Daniel Meléndez</p>
-      <p style="font-size:12px;color:#64748B" data-k="auth_cred">Fighter Pilot · Founder, TIGER VECTOR · Aviation Safety Expert</p>
-      <p style="font-size:11px;color:#475569;margin-top:4px">© 2026 TIGER VECTOR · support@tigervector.vip</p>
+      <p style="font-size:12px;color:#94A3B8" data-k="auth_cred">Fighter Pilot · Founder, TIGER VECTOR · Aviation Safety Expert</p>
+      <p style="font-size:11px;color:#64748B;margin-top:4px">© 2026 TIGER VECTOR · support@tigervector.vip</p>
     </div>
   </div>
 </div>
@@ -789,7 +789,7 @@ function buildResults() {
     <div style="display:inline-flex;align-items:center;gap:8px;background:${it.color}20;border:1px solid ${it.color}55;border-radius:8px;padding:10px 18px;margin-bottom:12px">
       <span style="font-size:14px;font-weight:700;letter-spacing:1.5px;color:${it.color}">${itd.name}</span>
     </div>
-    <p style="font-size:15px;color:#CBD5E1;line-height:1.75">${itd.desc}</p>`;
+    <p style="font-size:15px;color:#334155;line-height:1.75">${itd.desc}</p>`;
   const dimCard = document.getElementById('dim-bars').closest('.card');
   dimCard.parentNode.insertBefore(idCard, dimCard);
 
@@ -815,8 +815,8 @@ function buildResults() {
       font-size:11px;font-weight:700;color:#070D1B;letter-spacing:2px;margin-bottom:14px">
       ${t.cta_urgency} ${ld.urgency}
     </div>
-    <p style="font-size:19px;font-weight:700;color:#fff;line-height:1.55;margin-bottom:10px">${ld.cta}</p>
-    <p style="font-size:14px;color:#94A3B8;margin-bottom:1.5rem;line-height:1.6">${t.cta_note}</p>
+    <p style="font-size:19px;font-weight:700;color:#0F172A;line-height:1.55;margin-bottom:10px">${ld.cta}</p>
+    <p style="font-size:14px;color:#475569;margin-bottom:1.5rem;line-height:1.6">${t.cta_note}</p>
     <a href="${CALENDLY}?name=${encodeURIComponent(leadData.name)}&email=${encodeURIComponent(leadData.email)}"
        target="_blank"
        style="display:block;background:${lv.color};color:#070D1B;padding:18px;border-radius:8px;
