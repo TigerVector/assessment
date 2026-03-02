@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Safety Culture Maturity Assessment — TIGER VECTOR</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#070D1B;min-height:100vh;color:#0F172A}
-    .screen{display:none;min-height:100vh;padding:2.5rem 1rem;animation:fadeIn .4s ease}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#070D1B;min-height:100vh;min-height:100dvh;color:#0F172A;overflow-x:hidden}
+    .screen{display:none;min-height:100vh;min-height:100dvh;padding:2.5rem 1rem;animation:fadeIn .4s ease;overflow-y:auto}
     .screen.active{display:flex;flex-direction:column;align-items:center;justify-content:center}
     @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     .container{width:100%;max-width:760px}
@@ -68,7 +68,43 @@
     .nav-btns{display:flex;gap:10px;margin-top:1.25rem}
     .nav-btns .btn-gold{flex:1}
     .privacy{font-size:13px;color:#64748B;text-align:center;margin-top:12px}
-    @media(max-width:600px){.score-big{font-size:64px}.card{padding:1.75rem 1.25rem}.lk-btn{font-size:15px}.dim-bar-hdr{font-size:12px}}
+    @media(max-width:768px){
+      .screen{padding:1.5rem 0.75rem}
+      .card{padding:2rem 1.5rem}
+      .container{max-width:100%}
+    }
+    @media(max-width:600px){
+      .screen{padding:0.75rem 0.5rem}
+      .screen.active{justify-content:flex-start;padding-top:0.75rem}
+      .container{max-width:100%;padding:0}
+      .card{padding:1.5rem 1rem;border-radius:12px}
+      .tv-header{margin-bottom:1rem}
+      .tv-wordmark{font-size:12px;letter-spacing:3px}
+      .score-big{font-size:60px}
+      .score-of{font-size:13px}
+      .lk-btn{font-size:14px;border-radius:8px}
+      .lk-lbl{font-size:9px;margin-top:4px}
+      .likert{gap:5px;margin:1rem 0 0.5rem}
+      .dim-bar-hdr{font-size:12px}
+      .stats-row{gap:6px}
+      .stat-card{padding:12px 4px}
+      .stat-n{font-size:24px}
+      .stat-l{font-size:8px}
+      .nav-btns{flex-direction:column}
+      .nav-btns .btn-ghost{width:100%;flex:none;text-align:center}
+      .btn-gold{padding:14px 20px;font-size:15px}
+      .btn-ghost{padding:11px 16px;font-size:13px}
+      .form-group select,.form-group input{padding:12px 14px;font-size:14px}
+      .cta-box{padding:1.25rem}
+      .lang-toggle{top:8px;right:8px}
+    }
+    @media(max-width:400px){
+      .screen{padding:0.5rem 0.25rem}
+      .card{padding:1.25rem 0.875rem;border-radius:10px}
+      .likert{gap:3px}
+      .score-big{font-size:48px}
+      .load-step{font-size:14px;gap:8px}
+    }
     .id-opt{background:#F8FAFC;border:2px solid #E2E8F0;border-radius:12px;padding:15px 18px;cursor:pointer;margin-bottom:10px;transition:all .2s;text-align:left;width:100%;display:block}
     .id-opt:hover{border-color:#F0C040;background:#FFFBEB}
     .id-opt.sel{border-color:#F0C040;background:#FFF8E1}
