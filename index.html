@@ -13,7 +13,7 @@
     .container{width:100%;max-width:760px}
     .tv-header{text-align:center;margin-bottom:1.5rem}
     .tv-wordmark{font-size:13px;font-weight:700;letter-spacing:4px;color:#F0C040;margin-bottom:3px}
-    .tv-subtitle{font-size:9px;letter-spacing:2px;color:#94A3B8;text-transform:uppercase}
+    .tv-subtitle{font-size:12px;letter-spacing:2px;color:#94A3B8;text-transform:uppercase}
     .tv-line{width:50px;height:2px;background:#F0C040;margin:10px auto}
     .card{background:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:2.25rem 2.5rem;box-shadow:0 4px 24px rgba(0,0,0,.18)}
     .btn-gold{background:#F0C040;color:#070D1B;border:none;padding:16px 32px;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;width:100%;letter-spacing:.5px;transition:background .2s}
@@ -35,12 +35,12 @@
     .lk-btn{width:100%;aspect-ratio:1;border-radius:10px;border:2px solid #E2E8F0;background:#F8FAFC;color:#334155;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
     .lk-btn:hover{border-color:#F0C040;color:#B8860B;background:#FFFBEB}
     .lk-btn.sel{background:#F0C040;border-color:#F0C040;color:#070D1B}
-    .lk-lbl{font-size:10px;color:#64748B;margin-top:6px;line-height:1.3}
-    .dim-badge{display:inline-flex;align-items:center;gap:6px;background:#FFF8E1;border:1.5px solid #F0C040;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:1rem;color:#92700A}
+    .lk-lbl{font-size:12px;color:#64748B;margin-top:6px;line-height:1.3}
+    .dim-badge{display:inline-flex;align-items:center;gap:6px;background:#FFF8E1;border:1.5px solid #F0C040;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;letter-spacing:1px;margin-bottom:1rem;color:#92700A}
     .stats-row{display:flex;gap:10px;margin:1.25rem 0}
     .stat-card{flex:1;background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:10px;padding:16px 6px;text-align:center}
     .stat-n{font-size:28px;font-weight:800;color:#F0C040;line-height:1}
-    .stat-l{font-size:9px;color:#64748B;letter-spacing:1px;margin-top:4px;font-weight:600}
+    .stat-l{font-size:12px;color:#64748B;letter-spacing:1px;margin-top:4px;font-weight:600}
     .spinner{width:52px;height:52px;border:3px solid #E2E8F0;border-top-color:#F0C040;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1.25rem}
     @keyframes spin{to{transform:rotate(360deg)}}
     .load-steps{list-style:none}
@@ -72,9 +72,29 @@
       .screen{padding:0}
       .screen.active{align-items:stretch}
       .container{max-width:100%;display:flex;flex-direction:column;flex:1}
-      .card{flex:1;border-radius:0;border-left:none;border-right:none;border-bottom:none;box-shadow:none;padding:2.5rem 3rem;display:flex;flex-direction:column;justify-content:center;align-items:center}
-      .card>*{max-width:720px;width:100%}
-      .tv-header{padding:1.5rem 2rem 0}
+      .card{flex:1;border-radius:0;border-left:none;border-right:none;border-bottom:none;box-shadow:none;padding:3rem 5rem;display:flex;flex-direction:column;justify-content:center;align-items:center}
+      .card>*{max-width:min(980px,100%);width:100%}
+      .tv-header{padding:2rem 4rem 0}
+      .tv-wordmark{font-size:16px;letter-spacing:5px}
+      .tv-subtitle{font-size:13px}
+      .lk-btn{font-size:22px;border-radius:12px;min-height:64px}
+      .lk-lbl{font-size:13px}
+      .stat-n{font-size:38px}
+      .stat-l{font-size:13px}
+      .stat-card{padding:22px 10px}
+      .dim-badge{font-size:14px;padding:7px 20px}
+      .form-group label{font-size:13px;letter-spacing:2px}
+      .score-big{font-size:100px}
+      .prog-info{font-size:15px}
+      .prog-bar{height:7px}
+      .prog-wrap{padding:2rem calc(max(5rem, 50% - 490px)) 0}
+      .load-step{font-size:17px}
+      .btn-gold{font-size:17px;padding:18px 36px}
+      .privacy{font-size:14px}
+    }
+    @media(min-width:1024px){
+      .res-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:1.5rem;align-items:start;margin-bottom:1rem}
+      .res-grid .card{flex:none;margin-bottom:0;justify-content:flex-start}
     }
     @media(max-width:768px){
       .screen{padding:1.5rem 0.75rem}
@@ -91,13 +111,13 @@
       .score-big{font-size:60px}
       .score-of{font-size:13px}
       .lk-btn{font-size:14px;border-radius:8px}
-      .lk-lbl{font-size:9px;margin-top:4px}
+      .lk-lbl{font-size:11px;margin-top:4px}
       .likert{gap:5px;margin:1rem 0 0.5rem}
       .dim-bar-hdr{font-size:12px}
       .stats-row{gap:6px}
       .stat-card{padding:12px 4px}
       .stat-n{font-size:24px}
-      .stat-l{font-size:8px}
+      .stat-l{font-size:11px}
       .nav-btns{flex-direction:column}
       .nav-btns .btn-ghost{width:100%;flex:none;text-align:center}
       .btn-gold{padding:14px 20px;font-size:15px}
@@ -139,8 +159,8 @@
     <div class="card">
       <!-- Expert credential bar -->
       <div style="text-align:center;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:2px solid #F0C04033">
-        <p style="font-size:10px;font-weight:700;letter-spacing:3px;color:#B8860B;margin-bottom:2px" data-k="intro_cred1">45+ YEARS · FIGHTER PILOT · AVIATION SAFETY EXPERT</p>
-        <p style="font-size:11px;color:#64748B;letter-spacing:1px" data-k="intro_cred2">Daniel Meléndez · TIGER VECTOR</p>
+        <p style="font-size:13px;font-weight:700;letter-spacing:3px;color:#B8860B;margin-bottom:2px" data-k="intro_cred1">45+ YEARS · FIGHTER PILOT · AVIATION SAFETY EXPERT</p>
+        <p style="font-size:13px;color:#64748B;letter-spacing:1px" data-k="intro_cred2">Daniel Meléndez · TIGER VECTOR</p>
       </div>
 
       <!-- Title -->
@@ -252,7 +272,7 @@
       <div class="dim-badge" id="q-badge">D1 — LEADERSHIP</div>
       <h2 style="font-size:20px;font-weight:700;line-height:1.55;color:#0F172A" id="q-text"></h2>
       <div class="likert" id="q-likert"></div>
-      <div style="display:flex;justify-content:space-between;font-size:9px;color:#94A3B8;margin-top:-2px;margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#94A3B8;margin-top:-2px;margin-bottom:1rem">
         <span data-k="lbl_dis">Strongly Disagree</span>
         <span data-k="lbl_agr">Strongly Agree</span>
       </div>
@@ -355,9 +375,10 @@
       <div class="tv-line"></div>
     </div>
 
+    <div class="res-grid">
     <!-- Score card -->
     <div class="card" style="text-align:center;margin-bottom:1rem">
-      <p style="font-size:10px;letter-spacing:3px;color:#94A3B8;margin-bottom:8px;font-weight:700" data-k="res_your">YOUR MATURITY SCORE</p>
+      <p style="font-size:13px;letter-spacing:3px;color:#94A3B8;margin-bottom:8px;font-weight:700" data-k="res_your">YOUR MATURITY SCORE</p>
       <div class="score-big" id="res-score">—</div>
       <div class="score-of" data-k="res_of">out of 100</div>
 
@@ -384,9 +405,10 @@
 
     <!-- Dimension bars -->
     <div class="card" style="margin-bottom:1rem">
-      <p style="font-size:10px;letter-spacing:2px;color:#B8860B;font-weight:700;margin-bottom:1.1rem" data-k="res_dims">8 DIMENSIONS — YOUR PROFILE</p>
+      <p style="font-size:13px;letter-spacing:2px;color:#B8860B;font-weight:700;margin-bottom:1.1rem" data-k="res_dims">8 DIMENSIONS — YOUR PROFILE</p>
       <div id="dim-bars"></div>
     </div>
+    </div><!-- end .res-grid -->
 
     <!-- CTA -->
     <div id="res-cta"></div>
@@ -395,7 +417,7 @@
     <div style="text-align:center;margin-top:1.5rem">
       <p style="font-size:15px;font-weight:700;color:#F0C040">Daniel Meléndez</p>
       <p style="font-size:12px;color:#94A3B8" data-k="auth_cred">Fighter Pilot · Founder, TIGER VECTOR · Aviation Safety Expert</p>
-      <p style="font-size:11px;color:#64748B;margin-top:4px">© 2026 TIGER VECTOR · support@tigervector.vip</p>
+      <p style="font-size:13px;color:#64748B;margin-top:4px">© 2026 TIGER VECTOR · support@tigervector.vip</p>
     </div>
   </div>
 </div>
